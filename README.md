@@ -1,6 +1,6 @@
 # CourseProject
 
-The Project Proposal is located in Team_Discovery_Channel-Project_Proposal_CS410.pdf
+The Project Proposal is located in Project_Proposal_CS410-Team_Discovery_Channel.pdf
 
 As of 10/24/2021, this is the only work that has been done on this project.
 
