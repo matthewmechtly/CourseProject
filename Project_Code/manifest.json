@@ -1,0 +1,22 @@
+{
+    "manifest_version" : 2,
+    "name": "BM25 Page Searcher",
+    "short_name": "BM25",
+    "description": "Find the relevent parts of a webpage with BM25",
+    "version": "1.0.0",
+    "icons": {"128": "BM25_128.png"},
+    "content_scripts":[
+        {
+            "matches": [
+                "http://github.com/*",
+                "<all_urls>"
+            ],
+            "js": ["content.js"]
+        }
+    ],
+    "browser_action": {
+        "default_icon": "BM25_19.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": ["tabs"]
+}

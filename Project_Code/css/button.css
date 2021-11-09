@@ -1,0 +1,12 @@
+.container{
+    width:300px;
+}
+
+button {
+    width: 30px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius:3px;
+    margin: 10px;
+}
