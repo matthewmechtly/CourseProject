@@ -3,7 +3,11 @@
 
 console.log('content.js has begun running');
 
+let double_queue = {};
+let double_queue_counter = 0;
+
 function runBM25(raw_query){
+    console.log("runBM25 has run...")
 
     const sum_reducer = (accumulator, curr) => accumulator + curr;
     let paragraphs = document.getElementsByTagName('p');
@@ -129,14 +133,67 @@ function runBM25(raw_query){
     sorted_doc_scores.sort(function(a, b) {
         return b[1] - a[1];
     });
-    
-    console.log(sorted_doc_scores.shift());
 
+    best_result_index = sorted_doc_scores[0][0]
+
+    // stores sorted docs stores in global variable for future reference
+    double_queue = sorted_doc_scores;
+
+    document.getElementsByTagName('p')[best_result_index].setAttribute("style", "background-color: #ffffcc;");
+    document.getElementsByTagName('p')[best_result_index].scrollIntoView({behavior: 'smooth'});
+}
+
+function runPrev(){
+    // Increment the global counter to get the previous element in the
+    // doubly-tailed queue
+    double_queue_counter = double_queue_counter - 1
+
+    // Set up logic so that backwards looping is possible (i.e. negative indices)
+    if (double_queue_counter>-0.5) {
+        prev_result_index = double_queue[double_queue_counter][0];
+    } else {
+        // console.log(double_queue_counter);
+        negative_counter = double_queue_counter + double_queue.length;
+        prev_result_index = double_queue[negative_counter][0];
+    }
+    
+    // Move to paragraph corresponding to the index
+    document.getElementsByTagName('p')[prev_result_index].setAttribute("style", "background-color: #ffffcc;");
+    document.getElementsByTagName('p')[prev_result_index].scrollIntoView({behavior: 'smooth'});
+}
+
+
+function runNext(){
+    // Increment the global counter to get the next element in the
+    // doubly-tailed queue
+    double_queue_counter = double_queue_counter + 1
+
+    // Set up logic so that backwards looping is possible (i.e. negative indices)
+    if (double_queue_counter > -0.5) {
+        next_result_index = double_queue[double_queue_counter][0];
+    } else {
+        negative_counter = double_queue_counter + double_queue.length;
+        next_result_index = double_queue[negative_counter][0];
+    }
+
+    // Move to paragraph corresponding to the index    
+    document.getElementsByTagName('p')[next_result_index].setAttribute("style", "background-color: #ffffcc;");
+    document.getElementsByTagName('p')[next_result_index].scrollIntoView({behavior: 'smooth'});
 }
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        runBM25(request.message);
+        // console.log(request.message);
+        console.log("message received ...")
+        if (request.message === "string_to,ensure-no search*with_next_button"){
+            runNext();
+        } else if (request.message === "string_to,ensure-no search*with_prev_button"){
+            runPrev();
+        } else {
+            runBM25(request.message);
+        }
+
+
     }
 );
 

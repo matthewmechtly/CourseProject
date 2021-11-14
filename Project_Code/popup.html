@@ -42,6 +42,13 @@
             height:100px;
             width: 320px;
         }
+        .button-content{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            /* font-size: 29px; */
+        }
     </style>
 </head>
 <script src="popup.js"></script>
@@ -62,6 +69,10 @@
     <p>
         <textarea class="userInput" id="userInput"></textarea>
     </p>
-    <button id="searchButton">Search</button>
+    <div class="button-content">
+        <button id="searchButton">Search</button>
+        <button id="prevButton">Prev</button>
+        <button id="nextButton">Next</button>
+    </div>
 </body>
 </html>
