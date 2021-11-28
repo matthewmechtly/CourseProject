@@ -35,18 +35,34 @@ function popupPrevSender() {
         }
     );
 }
-
-function popupK1Sender(){
+/**
+ * Sends value of a BM25 parameter to the content script.
+ * @param  {} name BM25 parameter name
+ */
+function settingsSender(name){
     chrome.tabs.query(
         {currentWindow: true, active: true}, 
         function (tabs){
             let msg = {
-                "message": "k1",
-                "value": document.getElementById("k1Range").value
+                "message": name,
+                "value": document.getElementById(name + "Range").value
             }
             chrome.tabs.sendMessage(tabs[0].id, msg);
         }
     );
+}
+
+/**
+ * Looks for keypress event. If [Enter] key is pressed, update the range element that corresponds
+ * to the given input element and send the value to the content script.
+ * @param  {} event event listener or event listener object
+ * @param  {} elem a BM25 settings text input element
+ */
+function updateSettingsInput(event, elem){
+    if (event.key == "Enter") {
+        document.getElementById(elem.name + "Range").value = elem.value;
+        settingsSender(elem.name);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -60,17 +76,19 @@ document.addEventListener("DOMContentLoaded", function() {
     // Parameter Settings
     // ==================
 
-    // k_1
-    document.getElementById("k1Range").addEventListener("click", popupK1Sender);
-    document.getElementById("k1Range").oninput = () => {
-        document.getElementById("k1Input").value = document.getElementById("k1Range").value;
-    };
-    document.getElementById("k1Input").addEventListener("keyup", event => {
-        if (event.key == "Enter"){
-            document.getElementById("k1Range").value = document.getElementById("k1Input").value;
-            popupK1Sender();
-        }
-    })
+    // Range (slider) elements
+    let rangeElements = document.getElementsByClassName("range");
+    for (let i = 0; i < rangeElements.length; i++){
+        let e = rangeElements[i];
+        e.addEventListener("click", () => { settingsSender(e.name); });
+        e.oninput = () => { document.getElementById(e.name + "Input").value = e.value; }
+    }
+    // (Text) input elements
+    let inputElements = document.getElementsByClassName("input");
+    for (let i = 0; i < inputElements.length; i++){
+        let e = inputElements[i];
+        e.addEventListener("keyup", event => { updateSettingsInput(event, e); })
+    }
 });
 
 console.log('popup.js has finished running');

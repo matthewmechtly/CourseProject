@@ -5,17 +5,18 @@ console.log('content.js has begun running');
 
 let double_queue = {};
 let double_queue_counter = 0;
-const bm25_parameters = {"k1": 1.0,
-                          "b": 0.75,
-                        "names" : ["k1", "b"]};
+const bm25_parameters = {
+    "k1": 1.0,
+    "b": 0.75,
+};
 //var k_1 = 1 // BM25 parameter for term frequency transformation
 //var b = 0.75 // BM25 parameter for document length normalization
 
 
 function runBM25(raw_query){
-    console.log("Running BM25 with k_1: " + bm25_parameters.k1);
     let k_1 = bm25_parameters.k1;
     let b = bm25_parameters.b;
+    console.log("Running BM25 with k_1: " + k_1 + ", b: " + b);
 
     const sum_reducer = (accumulator, curr) => accumulator + curr;
     let paragraphs = document.getElementsByTagName('p');
@@ -190,7 +191,7 @@ function runNext(){
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("Parameter setting received ...");
-    if (bm25_parameters.names.indexOf(request.message) > -1 ){
+    if (Object.keys(bm25_parameters).indexOf(request.message) > -1 ){
         bm25_parameters[request.message] = request.value;
     }
 });
@@ -207,8 +208,6 @@ chrome.runtime.onMessage.addListener(
         } else {
             runBM25(request.message);
         }
-
-
     }
 );
 // console.log('content.js has finished running');
