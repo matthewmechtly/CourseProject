@@ -5,9 +5,17 @@ console.log('content.js has begun running');
 
 let double_queue = {};
 let double_queue_counter = 0;
+const bm25_parameters = {"k1": 1.0,
+                          "b": 0.75,
+                        "names" : ["k1", "b"]};
+//var k_1 = 1 // BM25 parameter for term frequency transformation
+//var b = 0.75 // BM25 parameter for document length normalization
+
 
 function runBM25(raw_query){
-    console.log("runBM25 has run...")
+    console.log("Running BM25 with k_1: " + bm25_parameters.k1);
+    let k_1 = bm25_parameters.k1;
+    let b = bm25_parameters.b;
 
     const sum_reducer = (accumulator, curr) => accumulator + curr;
     let paragraphs = document.getElementsByTagName('p');
@@ -16,8 +24,6 @@ function runBM25(raw_query){
     
     // Number of pseudo documents in collection (N)
     const num_pseudo_docs = paragraphs.length;
-    const b = 0.75
-    const k_1 = 1
     const delta = 1.0 // for BM25+, but probably won't use
 
     let pseudo_docs = [];
@@ -181,6 +187,15 @@ function runNext(){
     document.getElementsByTagName('p')[next_result_index].scrollIntoView({behavior: 'smooth'});
 }
 
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("Parameter setting received ...");
+    if (bm25_parameters.names.indexOf(request.message) > -1 ){
+        bm25_parameters[request.message] = request.value;
+    }
+});
+
+// Listen for message from pop-up
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         // console.log(request.message);
@@ -196,5 +211,4 @@ chrome.runtime.onMessage.addListener(
 
     }
 );
-
 // console.log('content.js has finished running');
