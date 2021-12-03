@@ -18,5 +18,12 @@
         "default_icon": "BM25_19.png",
         "default_popup": "popup.html"
     },
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+S"
+            }
+        }
+    },
     "permissions": ["tabs"]
 }

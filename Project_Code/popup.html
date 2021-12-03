@@ -49,6 +49,22 @@
             text-align: center;
             /* font-size: 29px; */
         }
+        .k1-settings-content{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding-top: 20px;
+            font-size: 16px;
+        }
+        .b-settings-content{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding: 10px 0px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <script src="popup.js"></script>
@@ -63,20 +79,6 @@
                 <span class="version">(1.0.0)</span>
         </h1>
     </div>
-    <div class="settings-content"> <!--k_1-->
-            <label for="k1">k1</label>
-            <input class="settings range" type="range" id="k1Range" name="k1"
-                   value=1.0 min=0.0 max=3.0 step=0.01>
-            <input class="settings input" type="input" id="k1Input" name="k1"
-                   value=1.0 min=0.0 max=3.0>
-    </div>
-    <div class="settings-content"> <!--b-->
-        <label for="b">b</label>
-        <input class="settings range" type="range" id="bRange" name="b"
-               value=0.75 min=0.0 max=1.0 step=0.01>
-        <input class="settings input" type="input" id="bInput" name="b"
-               value=0.75 min=0.0 max=1.0>
-    </div>
     <div class="model-content">
         <p>Please enter your search terms separated by spaces:</p>
     </div>
@@ -87,6 +89,20 @@
         <button id="searchButton">Search</button>
         <button id="prevButton">Prev</button>
         <button id="nextButton">Next</button>
+    </div>
+    <div class="k1-settings-content"> <!--k_1-->
+        <label for="k1">k1</label>
+        <input class="settings-range" type="range" id="k1Range" name="k1"
+               value=1.0 min=0.0 max=20.0 step=0.01>
+        <input class="settings-input" type="input" id="k1Input" name="k1"
+               value=1.0 min=0.0 max=20.0>
+    </div>
+    <div class="b-settings-content"> <!--b-->
+        <label for="b">b</label>
+        <input class="settings-range" type="range" id="bRange" name="b"
+            value=0.75 min=0.0 max=1.0 step=0.01>
+        <input class="settings-input" type="input" id="bInput" name="b"
+            value=0.75 min=0.0 max=1.0>
     </div>
 </body>
 </html>
