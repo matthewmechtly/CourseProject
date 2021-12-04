@@ -89,6 +89,10 @@ class BM25Ranker {
                                     .trim()
                                     .split(' ');
 
+
+        // remove stop words from clean query
+        clean_query = clean_query.filter(x => !stop_list.includes(x));
+
         // get term frequency object
         // https://stackoverflow.com/questions/5667888/counting-the-occurrences-frequency-of-array-elements
         const query_freqs = {};
