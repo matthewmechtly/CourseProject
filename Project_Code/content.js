@@ -234,26 +234,3 @@ chrome.runtime.onMessage.addListener(
         };
     }
 );
-
-var pdfjs = window['pdfjs-dist/build/pdf'];
-
-async function getContent(src) {
-    const doc = await pdfjs.getDocument(src)
-    const page = await doc.getPage(1);
-    return await page.getTextContent();
-}
-
-async function getItems(src) {
-    const content = await getContent(src);
-    const items = content.items.map((item) =>  {
-        console.log(item.str);
-        console.log(item.fontName);
-        console.log(item.transform);
-    });
-    return items;
-}
-
-// Use window.location.href to get current url
-getItems("https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf")
-
-console.log(window);
