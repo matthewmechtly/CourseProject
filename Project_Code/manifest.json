@@ -11,14 +11,13 @@
                 "http://github.com/*",
                 "<all_urls>"
             ],
-            "js": ["content.js", "data/stoplist.js", "pdf.js", "pdf.worker.js", "pdf.sandbox.js"]
+            "js": ["pdf.js", "pdf.worker.js", "pdf.sandbox.js", "viewer.js", "content.js", "data/stoplist.js"]
         }
     ],
     "browser_action": {
         "default_icon": "BM25_19.png",
         "default_popup": "popup.html"
     },
-    "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js; object-src 'self'",
     "commands": {
         "_execute_browser_action": {
             "suggested_key": {
