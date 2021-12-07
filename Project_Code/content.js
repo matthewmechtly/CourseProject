@@ -311,6 +311,7 @@ chrome.runtime.onMessage.addListener(
             };
         };
     }
+
 );
 
 // This function returns the number of pages in the PDF file specified by src.
