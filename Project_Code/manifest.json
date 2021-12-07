@@ -11,7 +11,9 @@
                 "http://github.com/*",
                 "<all_urls>"
             ],
-            "js": ["content.js", "data/stoplist.js"]
+
+            "js": ["pdf.js", "pdf.worker.js", "pdf.sandbox.js", "viewer.js", "content.js", "data/stoplist.js"]
+
         }
     ],
     "browser_action": {
