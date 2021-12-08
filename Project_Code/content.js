@@ -323,6 +323,7 @@ async function getNumPages(src) {
 }
 
 // This function returns the page context.
+// Referenced https://writingjavascript.com/how-to-extract-pdf-data-with-pdfjs in creating this function.
 async function getContent(src, pageNumber) {
     const doc = await pdfjsLib.getDocument(src).promise
 
@@ -334,6 +335,7 @@ async function getContent(src, pageNumber) {
 
 // This function returns a 2D array containing all of the content in the pdf in an array of pages. Each index in the outer array 
 // contains a text array corresponding to words in the entire page.
+// Referenced https://writingjavascript.com/how-to-extract-pdf-data-with-pdfjs in creating this function.
 async function getPages(src) {
     var pages = [];
     var page_text = []; // Array containing list of words.
