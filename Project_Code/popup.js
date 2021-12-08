@@ -55,6 +55,7 @@ function settingsSender(name){
                 "parameter": name,
                 "value": document.getElementById(name + "Range").value
             }
+            console.log(msg);
             chrome.tabs.sendMessage(tabs[0].id, msg);
         }
     );
@@ -68,6 +69,7 @@ function settingsSender(name){
  */
 function updateSettingsInput(event, elem){
     if (event.key == "Enter") {
+        console.log('blah');
         document.getElementById(elem.name + "Range").value = elem.value;
         settingsSender(elem.name);
     }
@@ -84,7 +86,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Parameter Settings
     // ==================
     // Range (slider) elements
-    let rangeElements = document.getElementsByClassName("range");
+    let rangeElements = document.getElementsByClassName("settings-range");
+    console.log(rangeElements);
     for (let i = 0; i < rangeElements.length; i++){
         let e = rangeElements[i];
         // On mouse-up of slider, send value to content script and update text input
