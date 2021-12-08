@@ -6,6 +6,8 @@ var popup_window_id;
 var num_pages;
 var relevant_page = "";
 
+// ###### Main Class Declaration ######
+
 class BM25Ranker {
 
     constructor(){
@@ -248,7 +250,7 @@ class BM25Ranker {
     }
 
      // TODO:
-     async parse_pdf(raw_query) {
+    async parse_pdf(raw_query) {
         console.log("Parsing new pdf query: " + raw_query);
         var url = location.href;
         let pseudo_docs = await getPages(url);
@@ -295,24 +297,7 @@ class BM25Ranker {
     static sum_reducer(accumulator, curr){ return accumulator + curr; }
 }
 
-let ranker = new BM25Ranker();
-
-// Listen for search query and document navigation from pop-up
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        if (request.action === "search"){ ranker.submit_new_query(request.query); }
-        else if (request.action === "next"){ ranker.next(); }
-        else if (request.action === "prev"){ ranker.prev(); }
-        else if (request.action === "set parameter") {
-            // Ensure that parameter sent from pop-up has a valid name
-            if (Object.keys(ranker.parameters).indexOf(request.parameter) > -1 ){
-                ranker.parameters[request.parameter] = request.value;
-                ranker.rank_with_new_parameters();
-            };
-        };
-    }
-
-);
+// ###### Async Functions For Processing PDFS ######
 
 // This function returns the number of pages in the PDF file specified by src.
 async function getNumPages(src) {
@@ -373,3 +358,25 @@ async function getPages(src) {
     }
     return page_text;
 }
+
+
+// ###### Receive Message from Popup.js and Call Functions ######
+
+let ranker = new BM25Ranker();
+
+// Listen for search query and document navigation from pop-up
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.action === "search"){ ranker.submit_new_query(request.query); }
+        else if (request.action === "next"){ ranker.next(); }
+        else if (request.action === "prev"){ ranker.prev(); }
+        else if (request.action === "set parameter") {
+            // Ensure that parameter sent from pop-up has a valid name
+            if (Object.keys(ranker.parameters).indexOf(request.parameter) > -1 ){
+                ranker.parameters[request.parameter] = request.value;
+                ranker.rank_with_new_parameters();
+            };
+        };
+    }
+
+);
