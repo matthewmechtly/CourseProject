@@ -46,7 +46,7 @@ def build_index_from_webpage(path):
             dp.write('\n'.join(paragraph_words))
         make_config_file(path.stem)
 
-def build_indeces():
+def build_datasets():
     # Create directory for customized config files at /Tests/config_files/
     CONFIG_DIR.mkdir(parents=False, exist_ok=True) 
     # Find all web page files in /Tests/reference_pages/
@@ -54,4 +54,4 @@ def build_indeces():
     for p in ref_pages:
         build_index_from_webpage(p)
 
-build_indeces()
+build_datasets()
