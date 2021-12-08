@@ -1,4 +1,3 @@
-import fileinput
 from pathlib import Path
 import shutil
 
