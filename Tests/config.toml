@@ -1,11 +1,11 @@
-prefix = "."
+prefix = "./indeces/webpagename"
 stop-words = "stopwords.txt"
 
-dataset = "Food - Wikipedia"
+dataset = "dataset"
 corpus = "line.toml"
-index = "idx"
+index = "./indeces/webpagename/idx"
 
 [[analyzers]]
 method = "ngram-word"
 ngram = 1
-filter = [{type = "icu-tokenizer"}, {type = "lowercase"}]
+filter = "default-unigram-chain"
