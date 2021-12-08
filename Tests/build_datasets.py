@@ -13,7 +13,6 @@ REFERENCE_PAGES_PATH = SCRIPT_PATH / 'reference_pages'
 LINE_FILE_PATH = SCRIPT_PATH / 'line.toml'
 CONFIG_FILE_SOURCE_PATH = SCRIPT_PATH / 'config.toml'
 CONFIG_DIR = SCRIPT_PATH / 'config_files'
-CONFIG_FILE_DEST_PATH = CONFIG_DIR / 'config.toml'
 
 CONFIG_REPLACE_STR = 'webpagename'
 
@@ -21,7 +20,9 @@ CONFIG_REPLACE_STR = 'webpagename'
 def make_config_file(page_name):
     # Copy /Tests/config.toml to /Tests/config_files/config.toml and insert name of
     # dataset directory into config file
-    with CONFIG_FILE_DEST_PATH.open(mode='w', encoding='utf-8') as new_file:
+    filename = page_name + '.toml'
+    config_file_dest_path = CONFIG_DIR / filename
+    with config_file_dest_path.open(mode='w', encoding='utf-8') as new_file:
         with CONFIG_FILE_SOURCE_PATH.open(mode='r', encoding='utf-8') as old_file:
             for line in old_file:
                 if CONFIG_REPLACE_STR in line:
@@ -29,7 +30,7 @@ def make_config_file(page_name):
                 new_file.write(line)
 
 def build_dataset_from_webpage(path):
-    with path.open(mode='r', encoding='utf-8') as fp:        
+    with path.open(mode='r', encoding='utf-8') as fp:
         soup = BeautifulSoup(fp, 'html.parser')
         paragraphs = soup.find_all('p')
         paragraph_words = [p.getText().strip() for p in paragraphs if len(p) > 1]
@@ -54,4 +55,6 @@ def build_datasets():
     for p in ref_pages:
         build_dataset_from_webpage(p)
 
-build_datasets()
+
+if __name__ == '__main__':
+    build_datasets()
