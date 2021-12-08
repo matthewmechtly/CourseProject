@@ -28,7 +28,7 @@ def make_config_file(page_name):
                     line = line.replace(CONFIG_REPLACE_STR, page_name)
                 new_file.write(line)
 
-def build_index_from_webpage(path):
+def build_dataset_from_webpage(path):
     with path.open(mode='r', encoding='utf-8') as fp:        
         soup = BeautifulSoup(fp, 'html.parser')
         paragraphs = soup.find_all('p')
@@ -52,6 +52,6 @@ def build_datasets():
     # Find all web page files in /Tests/reference_pages/
     ref_pages = REFERENCE_PAGES_PATH.glob('*.htm')
     for p in ref_pages:
-        build_index_from_webpage(p)
+        build_dataset_from_webpage(p)
 
 build_datasets()
