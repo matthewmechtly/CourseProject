@@ -51,6 +51,8 @@ The second section of content.js covers the `BM25Ranker` class. The first part o
 
 The final section is the series of asynchronous functions needed to use the pdf.js library. These methods are used when–instead of encountering an HTML document–the `submit_new_query` method needs to parse a PDF. If a PDF is indeed encountered, then the method `parse_pdf` is called. `parse_pdf` calls the `getPages` method, which uses the PDF.js library to determine the content of the various pages (by calling `getContent`), as well as the total number of pages within the PDF. These values are saved to class properties in the process. After the waterfall of other method calls, `parse_pdf` continues, cleans the pseudo-documents (the PDF pages in this case) and removes stopwords. Finally, the length of each page is determined, and the list of pseudo-documents are returned to `submit_new_query`. Just like the HTML document ranking, `calculate_frequency_matrix` is called followed by `rank_documents`. However, the PDF parsing does not call `focus_on_ranked_paragraph`, since Chrome and PDF.js has no way to navigate to particular pseudo-documents within the PDF without resetting the entire search.
 
+### “Tests” Folder:
+
 
 ## Installation Instructions
 
