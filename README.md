@@ -123,3 +123,13 @@ A: Entry field for query terms, B: Buttons to submit query and navigate through 
 |----|-------------------------------|----------|-----------------------------------------------------------------------------------------------------|
 | k1 | Term frequency transformation | [0, inf) | Set higher to reduce the influence of query terms being found multiple times in a document.         |
 | b  | Document length normalization | [0, 1]   | Set higher to reward query terms being found in shorter documents and to penalize longer documents. |
+
+3. (Optional) Submit a new query. The top-ranked result will be based on the newly-set parameters in the dialog.
+
+## Contribution Summary
+
+| Name and E-mail                           | Contributions                                                                                                                                                                                                                         |
+|-------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Matthew Mechtly mechtly2@illinois.edu     | * Created logo and design of UI * Wrote engine that calculated BM25 scores for the documents * Integrated HTML paragraph cycling and highlighting                                                                                     |
+| Sean Enright seanre2@illinois.edu         | * Integrated ranker parameters in extension pop-up dialog. * Refactored BM25 algorithm into class for modularity. * Tested module for efficacy.                                                                                       |
+| Bhaveshkumar Manivannan bm12@illinois.edu | * Integrated PDF search, allowing BM25 Page Searcher to work with PDF files on the Chrome Browser. Used the PDF.js library in order to implement this feature. * Wrote the overview of the function of the code in the documentation. |
