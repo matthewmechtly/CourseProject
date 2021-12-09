@@ -66,7 +66,6 @@ class BM25Ranker {
         var url = location.href;
         this.current_rank++;
         if (url.substr(url.length - 3) == "pdf") {
-            console.log("true");
             // this.focus_on_ranked_pdf_page(this.current_rank);
         } else {
             this.focus_on_ranked_paragraph(this.current_rank);
@@ -107,6 +106,7 @@ class BM25Ranker {
     parse_tab(raw_query) {
         console.log("Parsing new tab query: " + raw_query);
         let pseudo_docs = [];
+        let clean_pseudo_docs = [];
 
         let paragraphs = document.getElementsByTagName('p');
         this.num_pseudo_docs = paragraphs.length; // Number of pseudo documents in collection (N)
@@ -151,7 +151,11 @@ class BM25Ranker {
 
             this.pseudo_doc_lengths[j] = pseudo_docs[j].length;
         }
-        return pseudo_docs;
+
+        // remove stop words from clean query
+        clean_pseudo_docs = pseudo_docs.filter(x => !stop_list.includes(x));
+
+        return clean_pseudo_docs;
     }
 
     calculate_frequency_matrix(pseudo_docs){
@@ -290,7 +294,6 @@ class BM25Ranker {
         for (let j=0; j<this.num_pseudo_docs; j++) {
             this.pseudo_doc_lengths[j] = pseudo_docs[j].length;
         }
-        console.log("Pseudo_docs length " + pseudo_docs.length);
         return pseudo_docs;
     }
 
@@ -304,7 +307,6 @@ async function getNumPages(src) {
     const doc = await pdfjsLib.getDocument(src).promise
     // Get the number of pages
     const numPages = doc.numPages
-    // console.log("Pages " + numPages);
 }
 
 // This function returns the page context.
@@ -313,7 +315,6 @@ async function getContent(src, pageNumber) {
     const doc = await pdfjsLib.getDocument(src).promise
 
     // Get the PDF file name
-   // console.log("URL: " + location.href)
     const page = await doc.getPage(pageNumber);
     return await page.getTextContent();
 }
@@ -328,18 +329,18 @@ async function getPages(src) {
     const doc = await pdfjsLib.getDocument(src).promise;
     const numPages = doc.numPages;
     num_pages = numPages;
-    // console.log("Pages " + numPages);
+
 
     for (var pageNumber = 1; pageNumber <= numPages; pageNumber++) {
-        /// console.log("Page: " + pageNumber);
+    
         var page_content = "";
         const content = await getContent(src, pageNumber);
         const items = content.items.map((item) =>  {
             page_content += " " + item.str;
-            // console.log(item.str);  
+        
         });
         pages.push(page_content);
-        // console.log(page_content);
+    
     }
 
     // Clean up the pages' text.
@@ -351,8 +352,6 @@ async function getPages(src) {
                     .replace(/\n/g, " ")// Replaces new lines with space
                     .replace(/_/g, "")
                     .trim();
-        // console.log("Page: " + (x+1));
-        // console.log(pages[x]);
 
         page_text.push(pages[x].split(' '));
     }
