@@ -76,5 +76,19 @@ Chrome, version 95 and above
 
 5. Load the extension:
     1. Press the button labeled "Load unpacked". A file explorer window will pop up asking to specify the location of the extension source code.
-![image](https://user-images.githubusercontent.com/52465651/145346605-0b364896-a5c2-49da-9f1f-c77020a997ee.png)
+
+    ![image](https://user-images.githubusercontent.com/52465651/145346605-0b364896-a5c2-49da-9f1f-c77020a997ee.png)
+    
     2. Select the directory named “Project Code” within the directory where the repo was cloned in step 1. A new extension called “BM25 Page Searcher” will appear on the Extensions page.
+
+![image](https://user-images.githubusercontent.com/52465651/145346923-9434f73c-91bf-4d48-9708-0ab176a68643.png)
+
+6. Pin the extension to the browser toolbar for easy access:
+    1. Within the browser toolbar, click the extension menu (looks like a puzzle piece).
+    
+    ![image](https://user-images.githubusercontent.com/52465651/145347011-74a84e2c-dc9e-426f-b210-aa685af1f7c3.png)
+    
+    2. Press the pushpin icon next to “BM25 Page Searcher” to pin it to the toolbar.
+
+    ![image](https://user-images.githubusercontent.com/52465651/145347089-8151d2e7-c186-4eb6-bf59-4be5dfe2fb74.png)
+
