@@ -95,6 +95,7 @@ Chrome, version 95 and above
 ## Using the Extension
 
 ![image](https://user-images.githubusercontent.com/52465651/145347225-3086b9f3-1911-4743-9905-7ce9ef356c1d.png)
+
 The extension dialog
 A: Entry field for query terms, B: Buttons to submit query and navigate through results, C: Sliders for adjustment of BM25 parameters, D: Entry fields for adjustment of BM25 parameters
 
@@ -117,10 +118,8 @@ A: Entry field for query terms, B: Buttons to submit query and navigate through 
 1. (Optional) If modifying an existing query, submit a query.
 2. Modify BM25 parameters either by moving the sliders or by entering the parameter value directly into the text field for each parameter.
 
-| Parameter | Meaning                       | Range    | Guidance                                                                                            |   |
-|-----------|-------------------------------|----------|-----------------------------------------------------------------------------------------------------|---|
-| k1        | Term frequency transformation | [0, inf) | Set higher to reduce the influence of query terms being found multiple times in a document.         |   |
-| b         | Document length normalization | [0, 1]   | Set higher to reward query terms being found in shorter documents and to penalize longer documents. |   |
-|           |                               |          |                                                                                                     |   |
 
-
+|    | Meaning                       | Range    | Guidance                                                                                            |
+|----|-------------------------------|----------|-----------------------------------------------------------------------------------------------------|
+| k1 | Term frequency transformation | [0, inf) | Set higher to reduce the influence of query terms being found multiple times in a document.         |
+| b  | Document length normalization | [0, 1]   | Set higher to reward query terms being found in shorter documents and to penalize longer documents. |
