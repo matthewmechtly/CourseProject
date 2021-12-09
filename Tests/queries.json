@@ -1,0 +1,7 @@
+{
+    "Food - Wikipedia" : [ 
+        {"query": "industrial meat", "k1": 1.5, "b": 0.75 },
+        {"query": "industrial meat", "k1": 1.5, "b": 0.0 },
+        {"query": "industrial meat", "k1": 0, "b": 0.75 }
+    ]
+}        
