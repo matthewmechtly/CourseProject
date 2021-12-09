@@ -75,6 +75,6 @@ Chrome, version 95 and above
 
 
 5. Load the extension:
-    a. Press the button labeled "Load unpacked". A file explorer window will pop up asking to specify the location of the extension source code.
+    1. Press the button labeled "Load unpacked". A file explorer window will pop up asking to specify the location of the extension source code.
 ![image](https://user-images.githubusercontent.com/52465651/145346605-0b364896-a5c2-49da-9f1f-c77020a997ee.png)
-    b. Select the directory named “Project Code” within the directory where the repo was cloned in step 1. A new extension called “BM25 Page Searcher” will appear on the Extensions page.
+    2. Select the directory named “Project Code” within the directory where the repo was cloned in step 1. A new extension called “BM25 Page Searcher” will appear on the Extensions page.
