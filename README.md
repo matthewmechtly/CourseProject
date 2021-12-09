@@ -54,10 +54,11 @@ The final section is the series of asynchronous functions needed to use the pdf.
 
 ## Installation Instructions
 
-Requirements:
+#### Requirements:
+
 Chrome, version 95 and above
 
-Installation of Browser Extension:
+#### Installation of Browser Extension:
 
 1. Clone repository (https://github.com/matthewmechtly/CourseProject) to a local directory.
 
@@ -65,3 +66,5 @@ Installation of Browser Extension:
 
 2. Open Chrome.
 3. Enter "chrome://extensions/" into the browser navigation bar to access the extensions menu.
+
+
