@@ -18,6 +18,12 @@ CONFIG_REPLACE_STR = 'webpagename'
 
 
 def make_config_file(page_name):
+    """Creates a config file specifying the webpage name provided. The config file found in
+       /Tests/config.toml is used as a template.
+
+    Args:
+        page_name (str): filename (without extension) for the webpage that was used to build dataset
+    """
     # Copy /Tests/config.toml to /Tests/config_files/config.toml and insert name of
     # dataset directory into config file
     filename = page_name + '.toml'
@@ -30,6 +36,12 @@ def make_config_file(page_name):
                 new_file.write(line)
 
 def build_dataset_from_webpage(path):
+    """Parses provided HTML file and creates a line corpus which can be used to construct an
+       inverted index.
+
+    Args:
+        path (Pathlib path): path of HTML file
+    """
     with path.open(mode='r', encoding='utf-8') as fp:
         soup = BeautifulSoup(fp, 'html.parser')
         paragraphs = soup.find_all('p')
@@ -48,6 +60,8 @@ def build_dataset_from_webpage(path):
         make_config_file(path.stem)
 
 def build_datasets():
+    """Creates datasets for each of the HTML files found in /Tests/reference_pages/
+    """
     # Create directory for customized config files at /Tests/config_files/
     CONFIG_DIR.mkdir(parents=False, exist_ok=True) 
     # Find all web page files in /Tests/reference_pages/
