@@ -53,6 +53,48 @@ The final section is the series of asynchronous functions needed to use the pdf.
 
 ### “Tests” Folder:
 
+#### Overview
+
+This folder provides scripts to automate testing queries against websites of the user's choice to validate the results of the extension's implementation of the BM25 ranking algorithm.
+
+The user can copy HTML files with content-rich paragraphs into /Tests/reference_files/ and use the provided Python scripts build_datasets.py to generate line corpus files and Metapy configuration files automatically.
+
+Test queries are entered manually into queries.json. Each entry specifies a web page file name, its queries, and the BM25 parameters for each query.
+
+To execute the queries against all available datasets, the user executes the Python script test_bm25_webpages.py. Ranking results are output to the console.
+
+#### Requirements and Installation
+
+Requirements and Installation
+
+The Python modules Beautiful Soup and Metapy are both required for the test module. In order for both modules to work, Python version 3.6 is also required.
+
+Once Python 3.6 is installed, preferably in a virtual environment, navigate to the /Tests/ directory and use requirements.txt to install the required modules:
+
+$ pip install -r requirements.txt
+
+Once the required modules are successfully installed, execute the testing scripts from the /Tests/ directory. Failure to do so will prevent Metapy from identifying the correct directories.
+
+#### Preparation and Execution of Tests
+
+1. Copy all the webpage HTML files of choice (e.g. "my_webpage.html") into /Tests/reference_files/. An example Wikipedia page is provided.
+2. Execute build_datasets.py from the /Tests/ folder. This automatically:
+    1. Parses the pages and builds a line corpus dataset for each in /Tests/indeces/my_webpage/dataset/
+    2. Copies a line file into the dataset directory.
+    3. Generates configuration files in /Tests/config_files/. Metapy will use these to reference the paths of the datasets, line file, and eventually, the indices.
+3. Write the queries and parameters you'd like to test in queries.json. A few examples are provided corresponding to the Wikipedia page from step 1.
+4. Execute test_bm25_webpages.py from the  /Tests/ folder. This automatically:
+    1. Parses queries.json.
+    2. Looks for configuration files in /Tests/config_files/ corresponding to the documents in the queries.json.
+    3. If a match is found, Metapy builds an inverted index from the configuration file path.
+    4. Each query corresponding to the document is submitted to a Metapy BM25 ranker object. The results are output to the console. These include the following aspects of the top five ranked documents:
+        1. Query term(s)
+        2. Query parameters
+        3. Rank
+        4. BM25 score
+        5. Document ID
+        6. Document content
+
 
 ## Installation Instructions
 
