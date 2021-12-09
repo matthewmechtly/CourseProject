@@ -92,3 +92,35 @@ Chrome, version 95 and above
 
     ![image](https://user-images.githubusercontent.com/52465651/145347089-8151d2e7-c186-4eb6-bf59-4be5dfe2fb74.png)
 
+## Using the Extension
+
+![image](https://user-images.githubusercontent.com/52465651/145347225-3086b9f3-1911-4743-9905-7ce9ef356c1d.png)
+The extension dialog
+A: Entry field for query terms, B: Buttons to submit query and navigate through results, C: Sliders for adjustment of BM25 parameters, D: Entry fields for adjustment of BM25 parameters
+
+#### To submit a query:
+1. Navigate to a web page of your choice. This extension ranks paragraphs within web pages and pages within PDF files, so it is best suited for longer, text-based content.
+2. Open the browser extension. Either:
+    1. Press this key combination: [Control] [Shift] [S], or
+    2. Click on the BM25 icon pinned to the toolbar, or
+    3. If the icon is not pinned, press the extension menu and select “BM25 Page Ranker”.
+3. Enter the query term(s):
+    1. The search dialog will appear. Enter the search term(s) into the large text entry at the center of the dialog.
+    2. Press the “Search” button to submit the query. The browser will highlight and scroll to the top-ranked result.
+
+#### To navigate between ranked results:
+* Navigate to the next result by pressing the “Next” button. The browser will highlight and scroll to the next-ranked result.
+* Navigate to the previous result by pressing the “Prev” button. The browser will highlight and scroll to the previously-ranked result. If the top-ranked result is currently being shown, no change will be made.
+
+
+#### To modify BM25 parameters before submitting a query:
+1. (Optional) If modifying an existing query, submit a query.
+2. Modify BM25 parameters either by moving the sliders or by entering the parameter value directly into the text field for each parameter.
+
+| Parameter | Meaning                       | Range    | Guidance                                                                                            |   |
+|-----------|-------------------------------|----------|-----------------------------------------------------------------------------------------------------|---|
+| k1        | Term frequency transformation | [0, inf) | Set higher to reduce the influence of query terms being found multiple times in a document.         |   |
+| b         | Document length normalization | [0, 1]   | Set higher to reward query terms being found in shorter documents and to penalize longer documents. |   |
+|           |                               |          |                                                                                                     |   |
+
+
