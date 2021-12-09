@@ -1,3 +1,9 @@
+# BM25 Page Searcher - Documentation
+___
+
+## BM25 Page Searcher - Video Demo
+https://youtu.be/ja5Snc0Z9vQ
+
 # CourseProject
 
 The Project Proposal is located in Project_Proposal_CS410-Team_Discovery_Channel.pdf
