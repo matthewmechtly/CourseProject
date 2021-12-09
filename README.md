@@ -59,7 +59,7 @@ Chrome, version 95 and above
 
 Installation of Browser Extension:
 
-1.Clone repository (https://github.com/matthewmechtly/CourseProject) to a local directory.
+1. Clone repository (https://github.com/matthewmechtly/CourseProject) to a local directory.
 
 `git clone https://github.com/matthewmechtly/CourseProject.git`
 
