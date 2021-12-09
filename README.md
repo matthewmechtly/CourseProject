@@ -1,7 +1,9 @@
 # BM25 Page Searcher - Project Documentation
 ___
 
+
 ## BM25 Page Searcher - Video Demo
+
 https://youtu.be/ja5Snc0Z9vQ
 
 ## Overview of Code’s Function
