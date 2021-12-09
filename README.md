@@ -67,4 +67,14 @@ Chrome, version 95 and above
 2. Open Chrome.
 3. Enter "chrome://extensions/" into the browser navigation bar to access the extensions menu.
 
+![image](https://user-images.githubusercontent.com/52465651/145346427-48a1ccf6-90f0-43fb-a5c8-35dfdc2e01cb.png)
 
+4. Enable Developer Mode. In recent Chrome builds, this is a slider located in the top-right corner of the page.
+
+![image](https://user-images.githubusercontent.com/52465651/145346504-79949641-4eda-4c32-89cd-c00906293d51.png)
+
+
+5. Load the extension:
+    a. Press the button labeled "Load unpacked". A file explorer window will pop up asking to specify the location of the extension source code.
+![image](https://user-images.githubusercontent.com/52465651/145346605-0b364896-a5c2-49da-9f1f-c77020a997ee.png)
+    b. Select the directory named “Project Code” within the directory where the repo was cloned in step 1. A new extension called “BM25 Page Searcher” will appear on the Extensions page.
